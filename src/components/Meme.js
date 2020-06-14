@@ -1,7 +1,7 @@
 import React from "react";
 
 const Meme = ({ meme, handleClick, solo = false }) => {
-  let classname = solo ? "solo-meme" : "meme";
+  let classname = solo ? "meme solo-meme" : "meme";
 
   return (
     <div className={classname}>

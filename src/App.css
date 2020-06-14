@@ -19,7 +19,7 @@ body {
   min-height: 100vh;
 }
 
-img {
+.meme > img {
   width: 100%;
 }
 
@@ -42,7 +42,7 @@ img {
 }
 
 .solo-meme {
-  width: 50%;
+  width: 30%;
   font: 2rem;
 }
 
@@ -68,6 +68,21 @@ p {
 form {
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
+}
+
+form > *,
+button {
+  border-radius: 50px;
+  padding: 5px;
+  margin: 5px;
+}
+
+button {
+  margin-top: 10px;
+  display: block;
+  text-transform: capitalize;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 @media (max-width: 1000px) {
@@ -75,11 +90,21 @@ form {
     width: 32%;
     margin: 5px 5px;
   }
+
+  .solo-meme {
+    width: 50%;
+    margin: 5px 5px;
+  }
 }
 
 @media (max-width: 500px) {
   .meme {
     width: 47%;
+    margin: 5px 5px;
+  }
+
+  .solo-meme {
+    width: 80%;
     margin: 5px 5px;
   }
 }
