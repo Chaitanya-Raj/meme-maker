@@ -12,6 +12,13 @@ body {
   width: 98vw;
 }
 
+.solo-container {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 img {
   width: 100%;
 }
@@ -31,10 +38,36 @@ img {
   font-size: 1.5rem;
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  animation: fade-in 1s;
+}
+
+.solo-meme {
+  width: 50%;
+  font: 2rem;
+}
+
+@keyframes fade-in {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.meme:hover,
+.meme:active,
+.meme:focus {
+  background: #444;
 }
 
 p {
   margin-top: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1000px) {

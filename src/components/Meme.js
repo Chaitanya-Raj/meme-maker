@@ -1,11 +1,12 @@
 import React from "react";
 
-const Meme = (meme) => {
-  console.log(meme.meme);
+const Meme = ({ meme, handleClick, solo = false }) => {
+  let classname = solo ? "solo-meme" : "meme";
+
   return (
-    <div className="meme">
-      <img src={meme.meme.url} alt="meme" />
-      <p>{meme.meme.name}</p>
+    <div className={classname}>
+      <img src={meme.url} alt="meme" onClick={handleClick} />
+      <p>{meme.name}</p>
     </div>
   );
 };

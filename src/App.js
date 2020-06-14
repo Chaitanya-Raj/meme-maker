@@ -5,24 +5,53 @@ import "./reset.css";
 import "./App.css";
 
 function App() {
-  const [memes, SetMemes] = useState([]);
+  const [templates, SetTemplates] = useState([]);
+  const [template, setTemplate] = useState(null);
+  const [texts, setTexts] = useState([]);
 
   useEffect(() => {
     Axios.get("https://api.imgflip.com/get_memes", { crossDomain: true }).then(
       (response) => {
-        SetMemes(response.data.data.memes);
+        SetTemplates(response.data.data.memes);
       }
     );
   }, []);
 
-  const memelist = () => {
-    if (memes) {
-      return memes.map((meme) => <Meme key={meme.id} meme={meme} />);
+  const templateView = () => {
+    if (templates) {
+      return templates.map((template) => (
+        <Meme
+          key={template.id}
+          meme={template}
+          handleClick={() => {
+            setTemplate(template);
+          }}
+        />
+      ));
     }
-    return <div>waiting</div>;
   };
 
-  return <div className="container">{memelist()}</div>;
+  const createView = () => {
+    return <Meme key={template.id} meme={template} solo="true" />;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  if (template) {
+    return (
+      <div className="container solo-container">
+        {createView()}
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="" id="" />
+          <input type="text" name="" id="" />
+          <button type="submit">create</button>
+        </form>
+      </div>
+    );
+  }
+  return <div className="container">{templateView()}</div>;
 }
 
 export default App;
