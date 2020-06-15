@@ -7,7 +7,8 @@ import "./App.css";
 function App() {
   const [templates, SetTemplates] = useState([]);
   const [template, setTemplate] = useState(null);
-  const [texts, setTexts] = useState([]);
+  const [text0, setText0] = useState("");
+  const [text1, setText1] = useState("");
   const [meme, setMeme] = useState(null);
 
   useEffect(() => {
@@ -46,19 +47,21 @@ function App() {
       template_id: template.id,
       username: process.env.REACT_APP_USERNAME,
       password: process.env.REACT_APP_PASSWORD,
-      text0: texts[0],
-      text1: texts[1] || "",
+      text0: text0,
+      text1: text1,
     };
     const response = await Axios.post(
       `https://api.imgflip.com/caption_image?template_id=${params.template_id}&username=${params.username}&password=${params.password}&text0=${params.text0}&text1=${params.text1}`
     );
     console.log(response);
-    setMeme(response.data.data.url);
+    if (response.data.success === true) setMeme(response.data.data.url);
   };
 
   const goBackHome = () => {
     setTemplate(null);
     setMeme(null);
+    setText0("");
+    setText1("");
   };
 
   if (meme) {
@@ -77,20 +80,16 @@ function App() {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            value={texts[0]}
+            value={text0}
             onChange={(e) => {
-              let newText = texts;
-              texts[0] = e.target.value;
-              setTexts(newText);
+              setText0(e.target.value);
             }}
           />
           <input
             type="text"
-            value={texts[1]}
+            value={text1}
             onChange={(e) => {
-              let newText = texts;
-              texts[1] = e.target.value;
-              setTexts(newText);
+              setText1(e.target.value);
             }}
           />
           <button type="submit">create</button>
