@@ -107,4 +107,8 @@ button {
     width: 80%;
     margin: 5px 5px;
   }
+
+  #final-meme {
+    width: 100%;
+  }
 }

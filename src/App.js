@@ -66,8 +66,8 @@ function App() {
 
   if (meme) {
     return (
-      <div>
-        <img src={meme} alt="meme" />
+      <div className="container solo-container">
+        <img src={meme} alt="meme" id="final-meme" />
         <button onClick={goBackHome}>Make another meme</button>
       </div>
     );
